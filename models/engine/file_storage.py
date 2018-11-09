@@ -24,7 +24,7 @@ class FileStorage:
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)"""
-        type(self).__objects[type(obj).__name__ + '.'+ obj.id].BaseModel.to_dict()
+        type(self).__objects[type(obj).__name__ + '.'+ obj.id]
         with open(FileStorage.__file_path, "w") as write_file:
             json_string = json.dump(type(self).__objects, write_file)
 
