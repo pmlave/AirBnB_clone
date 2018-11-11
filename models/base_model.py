@@ -8,6 +8,7 @@ from datetime import datetime
 
 import models
 
+
 class BaseModel:
     """
     BaseModel class used with all all other classes
