@@ -80,7 +80,6 @@ class HBNBCommand(cmd.Cmd):
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         strings = shlex.split(args)
-        key = strings[0] + "." + strings[1]
         models.storage.reload()
         new_dict = models.storage.all()
         if len(strings) == 0:
@@ -89,13 +88,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(strings) == 1:
             print("** instance id missing **")
+        elif strings[0] + '.' + strings[1] not in new_dict.keys():
+            print("** no instance found **")
         elif len(strings) == 2:
             print("** attribute name missing **")
         elif len(strings) == 3:
             print("** value missing **")
-        elif key not in new_dict.keys():
-            print("** no instance found **")
         else:
+            key = strings[0] + '.' + strings[1]
             if hasattr(new_dict[key], strings[2]):
                 caster = type(getattr(new_dict[key], strings[2]))
                 setattr(new_dict[key], strings[2], caster(strings[3]))
