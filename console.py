@@ -17,12 +17,14 @@ class HBNBCommand(cmd.Cmd):
         """
         if not args:
             print("** class name missing **")
-        if args != 'BaseModel':
-            print("** class doesn't exist **")
-        else:
-            new_creation = BaseModel()
-            models.storage.save()
-            print(new_creation.id)
+        class_dict = {"BaseModel": BaseModel()}
+        for key, value in class_dict.items():
+            if args == key:
+                new_creation = value
+                models.storage.save()
+                print(new_creation.id)
+            else:
+                print("** class doesn't exist **")
 
     def do_show(self, args):
         """Prints the string representation of a specific instance
