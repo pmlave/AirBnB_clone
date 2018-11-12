@@ -11,7 +11,7 @@ class User(BaseModel):
         """User Instantiation
         """
 
-        self.email = ''
-        self.password = ''
-        self.first_name = ''
-        self.last_name = ''
+        email = ''
+        password = ''
+        first_name = ''
+        last_name = ''
