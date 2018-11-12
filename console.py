@@ -17,9 +17,8 @@ class HBNBCommand(cmd.Cmd):
         """
         if not args:
             print("** class name missing **")
-        '''Needs to be fixed still!!'''
         if args != 'BaseModel':
-            print("** class does not exist **")
+            print("** class doesn't exist **")
         else:
             new_creation = BaseModel()
             models.storage.save()
@@ -30,9 +29,18 @@ class HBNBCommand(cmd.Cmd):
         Usage: show <class name> <id>
         """
         strings = args.split()
-        key_value = strings[0] + '.' + strings[1]
-        print(models.storage.all()[key_value])
-
+        if len(strings) == 1:
+            print("** instance id missing **")
+        elif len(strings) == 0:
+            print("** class name missing **")
+        elif strings[0] != 'BaseModel':
+            print("** class doesn't exist **")
+        else:
+            key_value = strings[0] + '.' + strings[1]
+            try:
+                print(models.storage.all()[key_value])
+            except KeyError:
+                print("** no instance found **")
     def do_destroy(self, args):
         """Deletes an instance
         Usage: destroy <class name> <id>
