@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Method Command Interpreter"""
 
+import shlex
 import inspect
 import cmd
 import sys
@@ -78,6 +79,30 @@ class HBNBCommand(cmd.Cmd):
         """Update an instance.
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
+        strings = shlex.split(args)
+        key = strings[0] + "." + strings[1]
+        models.storage.reload()
+        new_dict = models.storage.all()
+        if len(strings) == 0:
+            print("** class name missing **")
+        elif strings[0] not in HBNBCommand.class_dict.keys():
+            print("** class doesn't exist **")
+        elif len(strings) == 1:
+            print("** instance id missing **")
+        elif len(strings) == 2:
+            print("** attribute name missing **")
+        elif len(strings) == 3:
+            print("** value missing **")
+        elif key not in new_dict.keys():
+            print("** no instance found **")
+        else:
+            if hasattr(new_dict[key], strings[2]):
+                caster = type(getattr(new_dict[key], strings[2]))
+                setattr(new_dict[key], strings[2], caster(strings[3]))
+                models.storage.save()
+            else:
+                setattr(new_dict[key], strings[2], strings[3])
+                models.storage.save()
 
     def do_quit(self, args):
         """Quits the program
