@@ -23,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
                   "State": State, "City": City, "Amenity": Amenity,
                   "Review": Review}
     method_list = ["all", "show", "destroy", "count", "update"]
+    __all_checker = 0
 
     def do_create(self, args):
         """
@@ -83,14 +84,15 @@ class HBNBCommand(cmd.Cmd):
         """
         strings = args.split()
         new_list = []
-        models.storage.reload()
+        method_list = []
+        address_value = 0
         if len(strings) == 1:
             if strings[0] not in HBNBCommand.class_dict.keys():
                 print("** class doesn't exist **")
             else:
                 for key in models.storage.all().keys():
-                    checker = key.split('.')
-                    if checker[0] == strings[0]:
+                    class_name = key.split('.')
+                    if class_name[0] == strings[0]:
                         new_list.append(str(models.storage.all()[key]))
                     else:
                         continue
@@ -153,15 +155,39 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def default(self, args):
+        """Method that deals with all instances of a command being preceeded by
+        a class name.
+        ex. User.all()
+        """
         counter = 0
         command_method = args.split('.')
         specific_method = command_method[1].split('(')
+        current_id = specific_method[1].split(')')
+
         if specific_method[0] == "count":
             for key in models.storage.all().keys():
                 if key.split('.')[0] == command_method[0]:
                     counter += 1
             print(counter)
+        if specific_method[0] == "all":
+            HBNBCommand.__all_checker = 1
+            self.do_all(command_method[0])
+            HBNBCommand.__all_checker = 0
+            '''
+            for key in models.storage.all().keys():
+                checker = key.split('.')
+                if checker[0] == strings[0]:
+                    new_list.append(str(models.storage.all()[key]))
+                else:
+                    continue
+            print(new_list)
+            '''
+        if specific_method[0] == "show":
+            self.do_show(command_method[0] + ' ' + current_id[0])
 
+        if specific_method[0] == "destroy":
+            self.do_destroy(command_method[0] + ' ' + current_id[0])
+#        if specific_method[0] == "update":
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
