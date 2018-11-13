@@ -79,6 +79,14 @@ class HBNBCommand(cmd.Cmd):
         if len(strings) == 1:
             if strings[0] not in HBNBCommand.class_dict.keys():
                 print("** class doesn't exist **")
+            else:
+                for key in models.storage.all().keys():
+                    checker = key.split('.')
+                    if checker[0] == strings[0]:
+                        new_list.append(str(models.storage.all()[key]))
+                    else:
+                        continue
+                print(new_list)
         else:
             for key, value in models.storage.all().items():
                 new_list.append(str(models.storage.all()[key]))
