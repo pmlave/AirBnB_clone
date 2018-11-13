@@ -71,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """Prints a string representation of all instances, can include class
         name to specify only instances of that class
-        Usage: destroy <class name> <id>
+        Usage: all <class name>
         """
         strings = args.split()
         new_list = []
