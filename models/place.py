@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """A class Place that inherits from BaseModel"""
 
-from model.BaseModel import base_model
+from models.base_model import BaseModel
 
 class Place(BaseModel):
     """Represents a class Place

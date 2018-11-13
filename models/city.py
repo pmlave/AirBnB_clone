@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """A class City that inherits from BaseModel"""
 
-from model.BaseModel import base_model
+from models.base_model import BaseModel
 
 class City(BaseModel):
     """Represents a class City

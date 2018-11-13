@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """A class Amenity that inherits from BaseModel"""
 
-from model.BaseModel import base_model
+from models.base_model import BaseModel
 
 class Amenity(BaseModel):
     """Represents a class Amenity

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """A class State that inherits from BaseModel"""
 
-from model.BaseModel import base_model
+from models.base_model import BaseModel
 
 class State(BaseModel):
     """Represents a class State

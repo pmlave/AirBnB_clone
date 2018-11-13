@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """A class review that inherits from BaseModel"""
 
-from model.BaseModel import base_model
+from models.base_model import BaseModel
 
 class Review(BaseModel):
     """Represents a class Review
