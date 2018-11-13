@@ -22,6 +22,7 @@ class HBNBCommand(cmd.Cmd):
     class_dict = {"BaseModel": BaseModel, "User": User, "Place": Place,
                   "State": State, "City": City, "Amenity": Amenity,
                   "Review": Review}
+    method_list = ["all", "show", "destroy", "count", "update"]
 
     def do_create(self, args):
         """
@@ -150,6 +151,16 @@ class HBNBCommand(cmd.Cmd):
         """Doesn't execute anything when user enter an empty line
         """
         pass
+
+    def default(self, args):
+        counter = 0
+        command_method = args.split('.')
+        specific_method = command_method[1].split('(')
+        if specific_method[0] == "count":
+            for key in models.storage.all().keys():
+                if key.split('.')[0] == command_method[0]:
+                    counter += 1
+            print(counter)
 
 
 if __name__ == '__main__':
