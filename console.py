@@ -6,6 +6,7 @@ import inspect
 import cmd
 import sys
 import models
+from models.user import User
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
@@ -13,7 +14,7 @@ from models.engine.file_storage import FileStorage
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
-    class_dict = {"BaseModel": BaseModel}
+    class_dict = {"BaseModel": BaseModel, "User": User}
 
     def do_create(self, args):
         """
@@ -23,13 +24,12 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
         else:
-            for key, value in HBNBCommand.class_dict.items():
-                if args == key:
-                    new_creation = value()
-                    models.storage.save()
-                    print(new_creation.id)
-                else:
-                    print("** class doesn't exist **")
+            if args in HBNBCommand.class_dict.keys():
+                new_creation = HBNBCommand.class_dict[args]()
+                models.storage.save()
+                print(new_creation.id)
+            else:
+                print("** class doesn't exist **")
 
     def do_show(self, args):
         """Prints the string representation of a specific instance
@@ -73,7 +73,16 @@ class HBNBCommand(cmd.Cmd):
         name to specify only instances of that class
         Usage: destroy <class name> <id>
         """
-        print(models.storage.all())
+        strings = args.split()
+        new_list = []
+        models.storage.reload()
+        if len(strings) == 1:
+            if strings[0] not in HBNBCommand.class_dict.keys():
+                print("** class doesn't exist **")
+        else:
+            for key, value in models.storage.all().items():
+                new_list.append(str(models.storage.all()[key]))
+            print(new_list)
 
     def do_update(self, args):
         """Update an instance.
