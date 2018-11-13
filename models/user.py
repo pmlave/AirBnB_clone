@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """A class User that inherits from BaseModel"""
 
-from model.BaseModel import base_model
+from models.base_model import BaseModel
 
 class User(BaseModel):
     """Represents a class User
