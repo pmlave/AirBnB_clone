@@ -21,6 +21,47 @@ class placeTest(unittest.TestCase):
         """
         del self.new_inst
 
+    def test_place_attributes(self):
+        """
+        check if place has the correct attributes
+        """
+        self.assertTrue(hasattr(self.new_inst, 'city_id'))
+        self.assertTrue(hasattr(self.new_inst, 'user_id'))
+        self.assertTrue(hasattr(self.new_inst, 'name'))
+        self.assertTrue(hasattr(self.new_inst, 'description'))
+        self.assertTrue(hasattr(self.new_inst, 'number_rooms'))
+        self.assertTrue(hasattr(self.new_inst, 'number_bathrooms'))
+        self.assertTrue(hasattr(self.new_inst, 'max_guest'))
+        self.assertTrue(hasattr(self.new_inst, 'price_by_night'))
+        self.assertTrue(hasattr(self.new_inst, 'latitude'))
+        self.assertTrue(hasattr(self.new_inst, 'longitude'))
+        self.assertTrue(hasattr(self.new_inst, 'amenity_ids'))
+
+    def test_place_attrbute_values(self):
+        """
+        check values of given place attributes
+        """
+        self.assertEqual(self.new_inst.city_id, "")
+        self.assertEqual(self.new_inst.user_id, "")
+        self.assertEqual(self.new_inst.name, "")
+        self.assertEqual(self.new_inst.description, "")
+        self.assertEqual(self.new_inst.number_rooms, 0)
+        self.assertEqual(self.new_inst.number_bathrooms, 0)
+        self.assertEqual(self.new_inst.max_guest, 0)
+        self.assertEqual(self.new_inst.price_by_night, 0)
+        self.assertEqual(self.new_inst.latitude, 0.0)
+        self.assertEqual(self.new_inst.longitude, 0.0)
+        self.assertEqual(self.new_inst.amenity_ids, [])
+
+    def test_to_dict_method_with_place(self):
+        """
+        test to dict method
+        """
+        new_dict = self.new_inst.to_dict()
+        self.assertEqual(new_dict['__class__'], 'Place')
+        self.assertEqual(str(type(new_dict['created_at'])), "<class 'str'>")
+        self.assertEqual(str(type(new_dict['created_at'])), "<class 'str'>")
+
     def test_is_basemodel_instance(self):
         """
         checks if new_inst is an instance of BaseModel
