@@ -5,7 +5,7 @@
 
 ## Description
 
-This is the first step towards building our first full web application: the AirBnB clone. 
+This is the first step towards building our first full web application: the AirBnB clone.
 
 A command interpreter to manage our Airbnb clone objects:
 
@@ -15,15 +15,42 @@ A command interpreter to manage our Airbnb clone objects:
  * Update attributes of an object
  * Destroy an object
 
-##### Example 1 | cat command
+##### Example 1 | help command in interactive mode
 
+```
+vagrant:AirBnB_clone$ ./console.py
+(hbnb) help
 
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb) help all
+Prints a string representation of all instances, can include class
+        name to specify only instances of that class
+        Usage: all <class name>
+
+(hbnb)
 
 ```
 
-##### Example 2 | BUILT-IN COMMAND: exit
+##### Example 2 | help command non-interactive mode
 
 ```
+
+vagrant:AirBnB_clone$ echo "help" | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb) vagrant:AirBnB_cat test_helpsole.py
+help
+vagrant:AirBnB_clone$ cat test_help | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
 
 
 ```
