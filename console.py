@@ -189,11 +189,12 @@ class HBNBCommand(cmd.Cmd):
                         sending_set = first_set[0].split(':')
                     else:
                         sending_set = all_attributes[sets].split(':')
-                    self.do_update(command_method[0] + ' ' + all_attributes[0] +
-                                   ' ' + sending_set[0] + sending_set[1])
+                    self.do_update(command_method[0] + ' ' +
+                                   all_attributes[0] + ' ' +
+                                   sending_set[0] + sending_set[1])
             else:
                 self.do_update(command_method[0] + ' ' + all_attributes[0] +
-                           all_attributes[1] + all_attributes[2])
+                               all_attributes[1] + all_attributes[2])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
