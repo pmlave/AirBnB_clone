@@ -4,6 +4,7 @@ import unittest
 from models.base_model import BaseModel
 import datetime
 
+
 class TestBaseModel(unittest.TestCase):
     '''
     Test cases for base_model class
@@ -77,11 +78,13 @@ class TestBaseModel(unittest.TestCase):
         self.new_instance.save()
         second_dict = self.new_instance.to_dict()
         self.assertEqual(first_dict["created_at"], second_dict["created_at"])
-        self.assertNotEqual(first_dict["updated_at"], second_dict["updated_at"])
+        self.assertNotEqual(
+            first_dict["updated_at"], second_dict["updated_at"])
 
     def test_kwargs_id(self):
         '''
-        tests if id stays the same during serialization - deserialization process
+        tests if id stays the same during serialization - deserialization
+        process
         '''
         first_inst = self.new_instance
         new_dict = first_inst.to_dict()
