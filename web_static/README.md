@@ -1,0 +1,1 @@
+This new section of our AirBnB Clone will serve as the front end development center. All of our Html and Css documents will be in this web_static directory.
