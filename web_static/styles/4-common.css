@@ -13,7 +13,3 @@ body {
     max-width: 1000px;
     color: black;
 }
-
-.container button:hover {
-        opacity: .9;
-}
