@@ -77,6 +77,7 @@ ul {
     width: 98%;
     left: -36px;
     position: relative;
+    z-index: 1;
 }
 
 .locations:hover .popover {
@@ -88,4 +89,5 @@ ul {
     width: 98%;
     left: -36px;
     position: relative;
+    z-index: 1;
 }
